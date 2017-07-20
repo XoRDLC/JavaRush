@@ -12,6 +12,7 @@ public class Solution {
     public static void main(String[] args) {
         //you can find your_file_name.tmp in your TMP directory or fix outputStream/inputStream according to your real file location
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
+
         try {
             File your_file_name = File.createTempFile("your_file_name", null);
             OutputStream outputStream = new FileOutputStream(your_file_name);
@@ -21,17 +22,18 @@ public class Solution {
 
             User user = new User();
             user.setMale(true);
-            user.setFirstName("Dima");
-            user.setLastName("Klyaus");
+            user.setFirstName("D");
+            user.setLastName("K");
             user.setCountry(User.Country.RUSSIA);
             user.setBirthDate(new Date("03/26/1982"));
             javaRush.users.add(user);
 
             user = new User();
             user.setMale(true);
-            user.setFirstName("Juriy");
-            user.setLastName("Klyaus");
+            user.setFirstName("J");
+            user.setLastName("K");
             user.setCountry(User.Country.UKRAINE);
+
             user.setBirthDate(new Date("03/13/1975"));
             javaRush.users.add(user);
 
