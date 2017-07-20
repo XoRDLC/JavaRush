@@ -30,11 +30,15 @@ public class L001_Serialize {
         out.println(human.hashCode());
         out.println(human.getName());
         out.println(human.getAge());
+        out.println(TestHuman.check);
+        TestHuman.check = "changed";
+
 
         TestHuman human1 = (TestHuman)object;
         out.println(human1.hashCode());
         out.println(human1.getName());
         out.println(human1.getAge());
+        out.println(TestHuman.check);
 
         out.println(human.equals(human1));
 
@@ -44,6 +48,7 @@ public class L001_Serialize {
     static class TestHuman implements Serializable {
         private String name;
         private float age;
+        private static String check = "original";
 
         private TestHuman(){
             super();
