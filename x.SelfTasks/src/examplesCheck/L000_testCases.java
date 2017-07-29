@@ -1,4 +1,4 @@
-package JavaRushTasks.x.SelfTasks.src.examplesCheck;
+package examplesCheck;
 
 /**
  * Created by Dimitriy on 02.07.2017.

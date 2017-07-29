@@ -2,7 +2,7 @@
  * Copyright (c) 2017. Код создан Д.Кляусом. Для использования кода в коммерческих продуктах - свяжитесь @ : deadlords@mail.ru
  */
 
-package JavaRushTasks.x.SelfTasks.src.examplesCheck;
+package examplesCheck;
 
 public class E003_split {
     public static void main(String[] args) {

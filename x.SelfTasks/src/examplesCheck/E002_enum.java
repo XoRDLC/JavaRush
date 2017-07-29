@@ -1,4 +1,4 @@
-package JavaRushTasks.x.SelfTasks.src.examplesCheck;
+package examplesCheck;
 
 
 public class E002_enum {

@@ -3,7 +3,7 @@
  */
 
 
-package JavaRushTasks.x.SelfTasks.src.examplesCheck;
+package examplesCheck;
 
 
 import java.util.Date;

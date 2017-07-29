@@ -1,4 +1,4 @@
-package JavaRushTasks.x.SelfTasks.src.examplesCheck;
+package examplesCheck;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
