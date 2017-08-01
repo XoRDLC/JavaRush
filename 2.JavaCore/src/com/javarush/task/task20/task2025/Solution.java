@@ -154,12 +154,15 @@ public class Solution {
         long startTime = System.currentTimeMillis();
         long beforeMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long N;
+
         N = Long.MAX_VALUE;
         //N = Integer.MAX_VALUE;
         long result[] = getNumbers(N);
+
         System.out.printf("Time: %.4f sec%n", (System.currentTimeMillis() - startTime)/1000F);
-        System.out.printf("Memory, 1st approach: %.3f Mb%n", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/1024F/1024F);
-        System.out.printf("Memory, 2nd approach: %.3f Mb%n", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()-beforeMemory)/1024F/1024F);
+        System.out.printf("Memory, 1st approach: %.3f Mb%n", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/Math.pow(2,20));
+        System.out.printf("Memory, 2nd approach: %.3f Mb%n", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()-beforeMemory)/Math.pow(2,20));
+
         for(long entry: result){
             System.out.println(entry);
         }
