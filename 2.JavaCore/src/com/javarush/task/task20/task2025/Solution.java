@@ -3,6 +3,17 @@ package com.javarush.task.task20.task2025;
 
 /*
 Алгоритмы-числа
+Число S состоит из M цифр, например, S=370 и M (количество цифр) = 3
+Реализовать логику метода getNumbers, который должен среди натуральных чисел меньше N (long)
+находить все числа, удовлетворяющие следующему критерию:
+число S равно сумме его цифр, возведенных в M степень
+getNumbers должен возвращать все такие числа в порядке возрастания.
+
+Пример искомого числа:
+370 = 3*3*3 + 7*7*7 + 0*0*0
+8208 = 8*8*8*8 + 2*2*2*2 + 0*0*0*0 + 8*8*8*8
+
+На выполнение дается 10 секунд и 50 МБ памяти.
 */
 
 import java.io.*;
@@ -157,7 +168,7 @@ public class Solution {
 
         N = Long.MAX_VALUE;
         //N = Integer.MAX_VALUE;
-        long result[] = getNumbers(N); 
+        long result[] = getNumbers(N);
 
         System.out.printf("Time: %.4f sec%n", (System.currentTimeMillis() - startTime)/1000F);
         System.out.printf("Memory, 1st approach: %.3f Mb%n", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/Math.pow(2,20));
