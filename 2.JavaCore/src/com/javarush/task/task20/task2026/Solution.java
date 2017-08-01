@@ -34,12 +34,10 @@ public class Solution {
                     else if(j==0&&i>0){
                         if(a[i-1][j]==0)recCount++;
                     }
-                    else if(a[i-1][j]==0&&a[i][j-1]==0&&a[i-1][j-1]==0) recCount++;
+                    else if(a[i-1][j]+a[i][j-1]+a[i-1][j-1]==0) recCount++;
                 }
             }
         }
-
-
         return recCount;
     }
 }
