@@ -157,7 +157,7 @@ public class Solution {
 
         N = Long.MAX_VALUE;
         //N = Integer.MAX_VALUE;
-        long result[] = getNumbers(N);
+        long result[] = getNumbers(N); 
 
         System.out.printf("Time: %.4f sec%n", (System.currentTimeMillis() - startTime)/1000F);
         System.out.printf("Memory, 1st approach: %.3f Mb%n", (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())/Math.pow(2,20));
