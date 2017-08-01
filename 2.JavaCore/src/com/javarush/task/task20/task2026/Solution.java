@@ -18,7 +18,6 @@ public class Solution {
     //какое-то топорное решение, повтор условий, брутфорс.. брр
     //вернуться при наличии времени
 
-
     public static int getRectangleCount(byte[][] a) {
         int recCount =0;
         for(int i=0; i<a.length;i++){
