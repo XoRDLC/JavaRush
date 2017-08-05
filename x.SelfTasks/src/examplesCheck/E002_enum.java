@@ -7,10 +7,8 @@ public class E002_enum {
         user.setCounter(TestEnum.ONE);
         System.out.println(user.getCounter());
         for (TestEnum te : TestEnum.values()) {
-            System.out.println(te);
+            System.out.println(te.value);
         }
-
-
     }
 
     public static enum TestEnum {
@@ -40,8 +38,5 @@ public class E002_enum {
         public void setCounter(TestEnum counter) {
             this.counter = counter;
         }
-
     }
-
-
 }

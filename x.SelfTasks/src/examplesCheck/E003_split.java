@@ -9,7 +9,7 @@ public class E003_split {
 
         String s = "aaa\\=sd=dfffe2 3 dfdf = dffd";
         String s2 = "asddd=4";
-        String spl[] = s2.split("(!\\\\)=");
+        String spl[] = s.split("(!\\\\)=");
         for (String p : spl) {
             System.out.println(p);
         }
