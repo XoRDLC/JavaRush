@@ -71,7 +71,7 @@ public class Solution {
                 fileOutputStream.write(buff);
 
                 fileOutputStream.flush();
-                fileOutputStream.write("\n".getBytes());
+                fileOutputStream.write("\n".getBytes()); //можно использовать System.lineSeparator(), но на всякий случай так, а вдруг ВАЛИДАТОР
 
                 fileInputStream.close();
             }
