@@ -19,9 +19,6 @@ import java.util.*;
 
 */
 public class Solution {
-    static int count = 0;
-
-    public static HashMap<File, String> files = new HashMap<>();
     public static void main(String[] args) throws IOException {
         String path = args[0];
         String resultFileAbsolutePath = args[1];
@@ -34,23 +31,24 @@ public class Solution {
         /*
         лучи здоровья комманде javarush.
         валидатор не проходил:
-        1) Потому что создал поток не сразу после переименования, а после сортировки
+        1) Потому что создал поток не сразу после переименования, а после сортировки (спасибо золотому человеку https://javarush.ru/users/1181806 в комментариях к заданиям)
         2) 7+ тестов не принимало, потому что поток "не закрыт" - закрывал во всех доступных извращенцу местах, в результате
         родилась вот такая ублюдочная конструкция. Открыл поток, сразу закрыл, а уже в момент записи снова открыл поток.
-        Может я тупой, и не вижу очевидного косяка, но сейчас это какой-то бред.
+        Может я тупой и не вижу очевидного косяка, но это какой-то бред.
          */
 
-        //должен быть сразу после переименования, потомучто
+        //должен быть сразу после переименования, потомучтоЪ
         FileOutputStream fileOutputStream = new FileOutputStream(resultRenamed);
+
         //как только закрыл здесь - прошёл валидатор.
         fileOutputStream.close();
 
-
+        //сбор файлов в заданом каталоге <50 байт, сортировка
         ArrayList<File> files = new ArrayList<>();
         files = folderOpener(folder);
         sortFilesByName(files);
 
-        //а хотел вот так.
+        //а хотел вот так поработать с потоками.
         /*
         FileOutputStream fileOutputStream = null;
         FileInputStream fileInputStream = null;
@@ -91,7 +89,7 @@ public class Solution {
         */
 
     }
-
+    //сортировка
     public static void sortFilesByName(ArrayList<File> list){
         list.sort(new Comparator<File>() {
             @Override
@@ -101,6 +99,7 @@ public class Solution {
         });
     }
 
+    //перебор файлов и каталогов в рекурсии (не уверен что рекурсия - здравое решение)
     public static ArrayList<File> folderOpener(File directory){
         ArrayList<File> fileList = new ArrayList<>();
         File file = new File(directory.getAbsolutePath());
