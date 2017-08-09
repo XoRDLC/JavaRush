@@ -20,11 +20,13 @@ import java.util.*;
 */
 public class Solution {
     public static void main(String[] args) throws IOException {
+        //тут д/б проверка аргументов
         String path = args[0];
         String resultFileAbsolutePath = args[1];
 
         File folder = new File(path);
         File result = new File(resultFileAbsolutePath);
+
         File resultRenamed = new File(result.getParent() + File.separator + "allFilesContent.txt");
         FileUtils.renameFile(result, resultRenamed);
 
