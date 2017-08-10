@@ -64,7 +64,7 @@ public class L004_FileVisitor {
         Path path = null;
 
         path = Paths.get("Z:\\");
-        path = Paths.get("D:\\");
+        //path = Paths.get("D:\\");
 
         //пример использования FileVisitor;
         fileVisitor = new InterfaceFVImplementation();
@@ -88,16 +88,16 @@ public class L004_FileVisitor {
         Files.walkFileTree(path, EnumSet.of(FileVisitOption.FOLLOW_LINKS),2, fileVisitor);
     }
 
-    //поиск не занятого имени файла
+    //поиск незанятого имени файла
     public static String getFileName(String fileName){
         int i = 0;
         StringBuilder sb = new StringBuilder(fileName);
         while(Files.exists(Paths.get(sb.toString()))){
             sb = new StringBuilder(fileName);
             int c = sb.lastIndexOf(".");
-            if(c==-1) sb.append(String.format("",i++));
+            if(c==-1) sb.append(String.format("%04d",i++));
             else{
-                sb.insert(c, i++);
+                sb.insert(c, String.format("%04d",i++));
             }
         }
         return sb.toString();
