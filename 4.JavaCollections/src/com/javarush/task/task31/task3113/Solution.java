@@ -28,7 +28,6 @@ public class Solution {
         else{
             System.out.printf("%s - не папка%n", path);
         }
-
     }
 
     public static class GetTreeStatistics extends SimpleFileVisitor<Path> {
@@ -55,6 +54,7 @@ public class Solution {
             //System.out.printf("SKIP:\t %s\t-\t%s%n",file, Files.size(file));
             if(Files.isDirectory(file)){dirCount++;}
             else{fileCount++;}
+
             sizeCount+=Files.size(file);
             return FileVisitResult.SKIP_SUBTREE;
         }

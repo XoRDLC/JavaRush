@@ -2,6 +2,8 @@ package examplesCheck;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.FileVisitOption;
+import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -12,6 +14,12 @@ import java.util.List;
  */
 
 public class L005_FilesPaths {
+
+    public static void main(String[] args) {
+        for (FileVisitOption c : FileVisitOption.values())
+            System.out.println(c);
+    }
+
 
     //com.javarush.task.task31.task3103
     public static byte[] readBytes(String fileName) throws IOException {
