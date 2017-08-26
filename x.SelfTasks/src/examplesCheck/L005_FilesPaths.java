@@ -1,5 +1,6 @@
 package examplesCheck;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Paths;
@@ -31,38 +32,46 @@ import java.util.EnumSet;
 public class L005_FilesPaths {
 
     public static void main(String[] args) throws IOException{
-        Path source = Paths.get("d:/Users/");
+        Path source = Paths.get("D:/");
         Path target = Paths.get("z:/1");
-
-
         copyTo(source,target);
     }
 
     public static void copyTo(Path source, Path target) throws IOException{
-
         FileVisitor<Path> fileVisitor = new CopyClass(source, target);
         Files.walkFileTree(source, EnumSet.of(FileVisitOption.FOLLOW_LINKS),1, fileVisitor);
-
     }
 
-    public static void moveTo(Path source, Path target) throws IOException{
-        Files.walkFileTree(source, new MoveClass(target));}
+    public static void moveTo(Path source, Path target) throws IOException{}
 
-
+    //можно сделать общий подход к Move/Copy и менять только действия в зависимости от переданного параметра
     public static class CopyClass extends SimpleFileVisitor<Path>{
         private Path target = null;
         private Path source = null;
-        public int aaaa = 0;
 
-        public CopyClass(Path source, Path target){
+        public CopyClass(Path source, Path target) throws IOException {
             this.source = source;
             this.target = target;
+            firstStart();
+        }
+
+        private void  firstStart() throws IOException {
+            if(!Files.exists(this.target)){
+                try{
+                    Files.createDirectories(this.target);
+                }
+                catch (SecurityException|AccessDeniedException e){
+                    System.out.println("Target directory not exitsts and not enough rights to create. " + e.getMessage());
+                }
+            }
         }
 
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
 
             Path path = Paths.get(target.toString(), this.source.relativize(dir).toString());
+            System.out.println(Files.exists(path));
+            System.out.println(Files.isDirectory(path));
 
             if(!Files.exists(path)) {
                 try{
@@ -72,15 +81,29 @@ public class L005_FilesPaths {
                     return FileVisitResult.SKIP_SUBTREE;
                 }
             }
+            else {
+                //на случай, если есть файл с именем как у директории, которую пытаемся сосздать
+                if(!Files.isDirectory(path)) {
+                    try {
+                        //переименовать
+                        Files.move(path, Paths.get(path + "_old"));
+                        Files.createDirectory(path);
+                    } catch (SecurityException | AccessDeniedException e) {
+                        System.out.printf("Can't create directory \"%s\", because file with that name exist and blocked", path.getFileName());
+                    }
+                }
+            }
             return FileVisitResult.CONTINUE;
         }
 
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            Path path = Paths.get(target.toString(), this.source.relativize(file).toString());
-
+            String name = this.source.relativize(file).toString();
+            Path path = Paths.get(target.toString(), Files.isDirectory(source)?name:name+ File.separator+file.getFileName());
+            System.out.println("FILE: " + path);
             if(!Files.exists(path)){
                 try{
+
                     Files.copy(file, path, StandardCopyOption.REPLACE_EXISTING);
                 }
                 catch (SecurityException|AccessDeniedException e){
@@ -92,7 +115,9 @@ public class L005_FilesPaths {
                     );
                 }
             }
-
+            else {
+                //запрос-ответ если файл с таким именим существует
+            }
             return FileVisitResult.CONTINUE;
         }
 
@@ -100,35 +125,6 @@ public class L005_FilesPaths {
         public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
             System.out.println("FAIL: " + file);
             return FileVisitResult.CONTINUE;
-        }
-    }
-
-    public static class MoveClass implements FileVisitor<Path>{
-
-        private Path target;
-
-        public MoveClass(Path target){
-            this.target = target;
-        }
-
-        @Override
-        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-            return null;
-        }
-
-        @Override
-        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            return null;
-        }
-
-        @Override
-        public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-            return null;
-        }
-
-        @Override
-        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-            return null;
         }
     }
 }

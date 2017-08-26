@@ -31,8 +31,8 @@ public class L001_Serialize {
         //srlz.startSerializationNewClass(); //не пашет, потому что каст разных классов, сделать в отдельных классах реализацию обновлённого TestHuman
         //srlz.startSerializationUsingSpecialHandling();
         //srlz.startExternalizable();
-        srlz.startSerializationCacheProblem();
-        //help();
+        //srlz.startSerializationCacheProblem();
+        help();
     }
 
     private void startSerializationCacheProblem() throws Exception{
