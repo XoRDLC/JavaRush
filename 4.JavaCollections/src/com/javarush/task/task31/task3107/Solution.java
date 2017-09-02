@@ -24,7 +24,7 @@ public class Solution {
             fileData = new NullFileData(e);
         }
     }
-    
+
     public FileData getFileData() {
         return fileData;
     }
